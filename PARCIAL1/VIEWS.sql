@@ -47,11 +47,10 @@ FROM parcial_01.autenticacion a
 JOIN parcial_01.usuarios u ON a.id_usuario = u.id_usuario
 JOIN parcial_01.agente_usuario au ON a.id_agente_usuario = au.id_agente_usuario;
 
+SELECT * FROM vista_autenticacion_completa
 
 -- =================================================================
 -- VISTA 3: Reporte de Pruebas Activas
--- Muestra un reporte de todas las pruebas que tienen un estado 'activo',
--- incluyendo el nombre de la prueba y los datos del usuario.
 -- =================================================================
 CREATE VIEW vista_reporte_pruebas_activas AS
 SELECT
@@ -63,7 +62,13 @@ SELECT
     u.nombre,
     u.apellido,
     u.nombre_usuario
-FROM pruebas_usuarios pu
-JOIN pruebas pr ON pu.id_prueba = pr.id_prueba
-JOIN usuarios u ON pu.id_usuario = u.id_usuario
+FROM parcial_01.pruebas_usuarios pu
+JOIN parcial_01.pruebas pr ON pu.id_prueba = pr.id_prueba
+JOIN parcial_01.usuarios u ON pu.id_usuario = u.id_usuario
 WHERE pu.estado = 'activo';
+
+SELECT * FROM vista_reporte_pruebas_activas
+
+
+
+
